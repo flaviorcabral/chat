@@ -1,10 +1,10 @@
-// dispara a função que lê o servidor
+// dispara a funÃ§Ã£o que lÃª o servidor
 window.onload = function(){
 	window.setInterval ('ChecaMsg()', 2000);
 }
 // envia nova mensagem ao servidor
 function EnviaMsg(msg){
-	ExibirMsg("<p><b>VOCÊ:</b> "+msg+"</p>");
+	ExibirMsg("<p><b>VOCÃŠ:</b> "+msg+"</p>");
 	var url="novaMsg2.php?msg="+encodeURIComponent(msg);
 	document.getElementById("msg").value='';
 	requisicaoHTTP("GET",url,true);
@@ -20,7 +20,7 @@ function ExibirMsg(msg){
 	var nova = document.createElement('div');
 	nova.innerHTML = msg;
 	saida.appendChild(nova);
-	saida.scrollTop = 100000;  // rolagem automática
+	saida.scrollTop = 100000;  // rolagem automÃ¡tica
 }
 
 function NovoAtendimento() {

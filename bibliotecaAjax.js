@@ -1,7 +1,7 @@
 var ajax;
 var dadosUsuario;
 
-// ------- cria o objeto e faz a requisição -------
+// ------- cria o objeto e faz a requisisÃ£o -------
 function requisicaoHTTP(tipo,url,assinc){
 	if(window.XMLHttpRequest){	  // Mozilla, Safari,...
 		ajax = new XMLHttpRequest();
@@ -16,7 +16,7 @@ function requisicaoHTTP(tipo,url,assinc){
 	if(ajax)	// iniciou com sucesso
 		iniciaRequisicao(tipo,url,assinc);
 	else
-		alert("Seu navegador não possui suporte a essa aplicação!");
+		alert("Seu navegador nï¿½o possui suporte a essa aplicaï¿½ï¿½o!");
 }
 
 // ------- Inicializa o objeto criado e envia os dados (se existirem) -------
@@ -29,7 +29,7 @@ function iniciaRequisicao(tipo,url,bool){
 }
 
 
-// ------- Inicia requisição com envio de dados -------
+// ------- Inicia requisisÃ£o com envio de dados -------
 function enviaDados(url){
 	criaQueryString();
 	requisicaoHTTP("POST",url,true);
@@ -55,9 +55,9 @@ function criaQueryString(){
 function trataResposta(){
 	if(ajax.readyState == 4){
 		if(ajax.status == 200){
-			trataDados();  // criar essa função no seu programa
+			trataDados();  // criar essa funÃ§Ã£o no seu programa
 		} else {
-			alert("Problema na comunicação com o objeto XMLHttpRequest.");
+			alert("Problema na comunicaÃ§Ã£o com o objeto XMLHttpRequest.");
 		}
 	}
 }

@@ -1,20 +1,35 @@
 <?php
-$gmtDate = gmdate("D, d M Y H:i:s"); 
+
+include "config.php";
+
+$gmtDate = gmdate("D, d M Y H:i:s");
 header("Expires: {$gmtDate} GMT"); 
 header("Last-Modified: {$gmtDate} GMT"); 
 header("Cache-Control: no-cache, must-revalidate"); 
 header("Pragma: no-cache");
 header("Content-Type: text/html; charset=ISO-8859-1");
 
-include "conecta.php";
+$con = new Controller();
+
 $mensagens="";
-$res = mysqli_query($con, "SELECT nome,msg FROM chat WHERE origem='A' and msg<>''");
-for($i=0;$i<mysqli_num_rows($res);$i++){
-	$dados = mysqli_fetch_row($res);
-	$nome = $dados[0];
-	$msg = $dados[1];
-	$mensagens .= "<p style=\"background-color:#E9E9E9\"><b>$nome:</b> $msg</p>";
-	$res2 = mysqli_query($con, "DELETE FROM chat WHERE origem='A' and msg='$msg'");
+
+if((isset($_SESSION['ssCliente']) and (isset($_SESSION['ssAtend'])))) {
+
+	$ssCliente = $_SESSION['ssCliente'];
+	$ssAtend = $_SESSION['ssAtend'];
+
+	$busca = $con->buscaMsgsAtend($ssAtend, 'A');
+	$nomeAtend = $con->buscaNomeAtendente($ssAtend);
+
+
+	if($busca){
+		foreach ($busca as $msg) {
+			$mensag = $msg;
+			$mensagens .= "<p style=\"background-color:#E9E9E9\"><b>$nomeAtend:</b> $mensag</p>";
+			$con->deletarMsgAtend($ssAtend, $mensag, 'A');
+		}
+
+		echo $mensagens;
+	}
 }
-echo $mensagens;
 ?>
